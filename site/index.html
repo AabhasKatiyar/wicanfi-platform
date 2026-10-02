@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=2.6.0">
+  <link rel="stylesheet" href="css/style.css?v=2.7.0">
 </head>
 <body>
 
@@ -36,10 +36,9 @@
     <div class="orb orb-3"></div>
   </div>
 
-  <div class="container">
-
-    <!-- Top Navigation Bar -->
-    <header class="navbar" id="topNav">
+  <!-- Top Navigation Bar (Full-Width Frosted Glass Header) -->
+  <header class="navbar" id="topNav">
+    <div class="container">
       <nav class="nav-shell" aria-label="Main Navigation">
         <a href="/" class="brand-link" title="WiCanFi Home">
           <div class="brand-logo-wrap">
@@ -64,9 +63,10 @@
         </ul>
 
         <div class="nav-actions">
-          <a href="https://github.com/AabhasKatiyar/wicanfi-platform" target="_blank" rel="noopener noreferrer" class="nav-btn-gh" title="View Source on GitHub">
+          <a href="https://github.com/AabhasKatiyar/wicanfi-platform" target="_blank" rel="noopener noreferrer" class="nav-btn-gh" title="Star AabhasKatiyar/wicanfi-platform on GitHub">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span class="live-gh-stars">★ Star</span>
+            <span>Star</span>
+            <span class="live-gh-stars">★</span>
           </a>
           <a href="#downloads" class="nav-btn-download" title="Get WiCanFi">
             <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -80,11 +80,12 @@
           </button>
         </div>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <!-- Mobile Navigation Drawer & Backdrop -->
-    <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
-    <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation" aria-hidden="true">
+  <!-- Mobile Navigation Drawer & Backdrop -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation" aria-hidden="true">
       <div class="mobile-drawer-header">
         <a href="/" class="brand-link" style="gap:10px;">
           <div class="brand-logo-wrap" style="width:34px;height:34px;">
@@ -125,6 +126,8 @@
         </div>
       </div>
     </aside>
+
+  <main class="container">
 
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
@@ -639,7 +642,7 @@
         </div>
         <div>
           <h3 class="gh-banner-title">
-            <span>AabhasKatiyar / wicanfi</span>
+            <span>AabhasKatiyar / wicanfi-platform</span>
             <span style="font-size: 13px; font-weight: 700; color: #fde047; background: rgba(250, 204, 21, 0.15); padding: 2px 8px; border-radius: 9999px;">Open Source</span>
           </h3>
           <p class="gh-banner-desc">
@@ -662,7 +665,7 @@
       </div>
     </section>
 
-  </div>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -716,6 +719,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2.3.0"></script>
+  <script src="js/main.js?v=2.4.0"></script>
 </body>
 </html>

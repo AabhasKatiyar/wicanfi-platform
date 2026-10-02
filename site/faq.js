@@ -176,7 +176,7 @@
     const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
     const timeoutId = controller ? setTimeout(() => controller.abort(), 3500) : null;
 
-    fetch('https://api.github.com/repos/AabhasKatiyar/wicanfi', {
+    fetch('https://api.github.com/repos/AabhasKatiyar/wicanfi-platform', {
       signal: controller ? controller.signal : undefined,
     })
       .then((res) => {

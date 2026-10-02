@@ -113,26 +113,28 @@ body {
   z-index: 1;
 }
 
-/* ─── Top Navigation Bar ─────────────────────────────────────────── */
+/* ─── Top Navigation Bar (Full-Width Frosted Glass Header) ───────── */
 .navbar {
   position: sticky;
-  top: 16px;
-  z-index: 100;
-  margin-bottom: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 2px 14px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s ease;
 }
 
 .nav-shell {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-  transition: all 0.3s var(--ease-smooth);
+  padding: 12px 0;
+  width: 100%;
 }
 
 .brand-link {
@@ -141,6 +143,7 @@ body {
   gap: 12px;
   text-decoration: none;
   color: inherit;
+  flex-shrink: 0;
 }
 
 .brand-logo-wrap {
@@ -168,6 +171,7 @@ body {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-main);
+  white-space: nowrap;
 }
 
 .brand-badge {
@@ -184,12 +188,13 @@ body {
   font-size: 11px;
   font-weight: 500;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
   list-style: none;
 }
 
@@ -198,6 +203,7 @@ body {
   font-weight: 600;
   color: var(--text-secondary);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.2s;
 }
 
@@ -209,13 +215,14 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .nav-btn-gh {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 7px;
+  padding: 7px 14px;
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 600;
@@ -223,28 +230,29 @@ body {
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   text-decoration: none;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   transition: all 0.2s var(--ease-smooth);
 }
 
 .nav-btn-gh:hover {
   background: #f8fafc;
   border-color: var(--border-highlight);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
   transform: translateY(-1px);
 }
 
 .live-gh-stars {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   color: #b45309;
   background: #fef3c7;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 9999px;
   border: 1px solid #fde68a;
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  line-height: 1;
 }
 
 .nav-btn-download,
@@ -265,6 +273,7 @@ body {
   box-shadow: 0 4px 16px rgba(245, 158, 11, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: all 0.25s var(--ease-spring);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .nav-btn-download:hover,
@@ -277,7 +286,7 @@ body {
 
 /* ─── Hero Section ───────────────────────────────────────────────── */
 .hero-section {
-  padding: 50px 0 60px;
+  padding: 44px 0 60px;
 }
 
 .hero-grid {
@@ -1922,8 +1931,23 @@ section[id], div[id] {
 
 /* ─── Comprehensive Responsive Breakpoints ───────────────────────── */
 
-/* 1. iPad Pro & Large Tablets (max-width: 1080px) */
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
+  .nav-menu {
+    gap: 14px;
+  }
+  .nav-link {
+    font-size: 13px;
+  }
+}
+
+/* 1. iPad Pro & Large Tablets (max-width: 1040px) */
+@media (max-width: 1040px) {
+  .nav-menu {
+    display: none;
+  }
+  .nav-toggle {
+    display: flex;
+  }
   .container {
     max-width: 100%;
     padding: 0 20px;
