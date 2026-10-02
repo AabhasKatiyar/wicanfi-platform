@@ -1,0 +1,9 @@
+# Robots.txt for WiCanFi Campus Wi-Fi Control Layer
+# Website: https://wicanfi.pages.dev/
+# Repository: https://github.com/AabhasKatiyar/wicanfi-platform
+
+User-agent: *
+Allow: /
+
+# Direct Sitemap Reference for Crawlers
+Sitemap: https://wicanfi.pages.dev/sitemap.xml

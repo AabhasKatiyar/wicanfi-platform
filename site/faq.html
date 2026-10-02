@@ -3,10 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WiCanFi — FAQ & Security Assurance</title>
+  
+  <!-- Primary Meta Tags -->
+  <title>WiCanFi — FAQ & Security Assurance | Zero-Knowledge Privacy</title>
+  <meta name="title" content="WiCanFi — FAQ & Security Assurance | Zero-Knowledge Privacy">
+  <meta name="description" content="Frequently Asked Questions and Security Architecture for WiCanFi. Learn how student Wi-Fi credentials are kept strictly in your local device with zero passwords in cloud.">
+  <meta name="keywords" content="wicanfi faq, campus wifi security, captive portal auto login safe, student wifi privacy, aabhas katiyar">
+  <meta name="author" content="Aabhas Katiyar">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://wicanfi.pages.dev/faq.html">
+
+  <!-- Theme Color & Mobile App Experience -->
+  <meta name="theme-color" content="#d97706">
+  <meta name="msapplication-TileColor" content="#d97706">
+  <meta name="application-name" content="WiCanFi FAQ">
+  <meta name="apple-mobile-web-app-title" content="WiCanFi FAQ">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="WiCanFi">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://wicanfi.pages.dev/faq.html">
+  <meta property="og:title" content="WiCanFi — FAQ & Security Assurance">
+  <meta property="og:description" content="Detailed security breakdown of WiCanFi. Zero passwords in cloud, 100% local device storage, MIT open-source transparency.">
+  <meta property="og:image" content="https://wicanfi.pages.dev/assets/wicanfi_logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="WiCanFi Security and Privacy FAQ">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://wicanfi.pages.dev/faq.html">
+  <meta name="twitter:title" content="WiCanFi — FAQ & Security Assurance">
+  <meta name="twitter:description" content="Student Wi-Fi credentials stay 100% local. Zero cloud databases. Full open-source auditability.">
+  <meta name="twitter:image" content="https://wicanfi.pages.dev/assets/wicanfi_logo.png">
+  <meta name="twitter:creator" content="@AabhasKatiyar">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="48x48" href="icons/icon48.png">
+  <link rel="apple-touch-icon" href="icons/icon128.png">
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FAQPage Structured Data (JSON-LD for Google Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is WiCanFi safe to use with my campus Wi-Fi credentials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 100% safe. WiCanFi is built from the ground up on a strict Zero-Knowledge Security Architecture. Your student ID and password are saved only inside your browser's private local sandbox (chrome.storage.local). They exist solely on your physical computer and are never synced to any cloud database or remote analytics server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the developer or anyone else see my college ID and password?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, absolutely not. Neither the developer, the college administration, nor any third party can see your saved password. WiCanFi contains zero backend database tracking for passwords. Credentials are exchanged directly between your browser and the local campus gateway."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who created WiCanFi and where is the source code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WiCanFi was created by Aabhas Katiyar as a public, open-source campus utility. The official repository is available on GitHub at https://github.com/AabhasKatiyar/wicanfi-platform under the MIT License."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did Windows SmartScreen say Unknown Publisher or Windows protected your PC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When running Update-Windows.bat, Windows Defender SmartScreen shows this prompt because batch files (.bat) cannot be digitally signed with binary Authenticode signatures, and enterprise EV certificates cost $500/year. You can safely click 'More info' and 'Run anyway'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does WiCanFi track my browsing history or internet activity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Never. WiCanFi only checks whether your device is logged into campus Wi-Fi. Permissions are strictly scoped to college portal gateway domains (172.16.16.16:8090) and cannot monitor visited websites or search queries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the auto-login automation work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When your laptop connects to campus Wi-Fi, the extension detects the captive portal gateway within 800 milliseconds, submits an authenticated request using your locally saved credentials, and automatically closes the portal tab once logged in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I change or completely delete my saved credentials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click the Settings gear icon in the extension popup to change your credentials, toggle auto-login, or click 'Clear Saved Credentials' to instantly wipe all data from your local browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I update to new versions when bug fixes are released?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click Check for Updates in the extension, download the latest package or run Update-Windows.bat, and reload the extension in chrome://extensions."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     /* ─── WiCanFi Design Tokens ─────────────────────────────────────────── */
     :root {
