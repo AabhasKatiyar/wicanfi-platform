@@ -27,7 +27,7 @@ Q: Why does Windows SmartScreen say "Windows protected your PC" or
    "Unknown Publisher" when I run Update-Windows.bat?
 
 A: WiCanFi is a verified open-source, non-profit campus tool:
-   https://github.com/AabhasKatiyar/wicanfi
+   https://github.com/AabhasKatiyar/wicanfi-platform
 
    Microsoft Windows Defender SmartScreen automatically displays this warning
    on ANY batch file (.bat) downloaded from the internet because .bat scripts
