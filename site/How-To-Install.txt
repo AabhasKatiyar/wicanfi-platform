@@ -1,0 +1,52 @@
+================================================================
+ WiCanFi — Fast 1-Minute Chrome & Edge Setup Guide
+================================================================
+
+Step 1: Open Google Chrome or Microsoft Edge and navigate to:
+        chrome://extensions   (Google Chrome)
+        edge://extensions     (Microsoft Edge)
+
+Step 2: Turn ON "Developer mode" (toggle switch in the top-right corner).
+
+Step 3: Click "Load unpacked" (button in the top-left corner).
+
+Step 4: Select the "WiCanFi-Extension" folder.
+
+That's it! WiCanFi is installed and will automatically handle your campus Wi-Fi.
+
+----------------------------------------------------------------
+HOW TO UPDATE ANYTIME:
+----------------------------------------------------------------
+- Windows: Double-click Update-Windows.bat
+- Mac:     Double-click Update-Mac.command
+
+----------------------------------------------------------------
+WINDOWS SECURITY NOTE (Why "Unknown Publisher" appears & Is it safe?)
+----------------------------------------------------------------
+Q: Why does Windows SmartScreen say "Windows protected your PC" or 
+   "Unknown Publisher" when I run Update-Windows.bat?
+
+A: WiCanFi is a verified open-source, non-profit campus tool:
+   https://github.com/AabhasKatiyar/wicanfi
+
+   Microsoft Windows Defender SmartScreen automatically displays this warning
+   on ANY batch file (.bat) downloaded from the internet because .bat scripts
+   cannot hold commercial EV corporate certificates (which cost $500/year).
+
+   WiCanFi is 100% safe, contains zero spyware, ads, or background trackers.
+   Because it is a standard batch script, you can right-click Update-Windows.bat
+   and click "Edit" in Notepad to inspect every line of code yourself!
+
+TWO EASY WAYS TO RUN WITHOUT WORRY:
+
+  METHOD 1 (Takes 1 second):
+  1. On the blue "Windows protected your PC" window, click "More info".
+  2. Click "Run anyway". The updater will run safely and unblock future runs.
+
+  METHOD 2 (Permanent zero-warning fix before unzipping):
+  1. Right-click the downloaded "WiCanFi-Extension.zip" file.
+  2. Click "Properties".
+  3. At the bottom under Security, check the [x] "Unblock" box.
+  4. Click "Apply" and "OK", then extract the folder.
+     Windows will never show any warnings!
+================================================================

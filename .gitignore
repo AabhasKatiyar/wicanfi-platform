@@ -1,0 +1,13 @@
+# OS & System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment and Secrets (strictly barred)
+.env*
+*.key
+*.pem
+*.xml
+
+# Logs
+*.log

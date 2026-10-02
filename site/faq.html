@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WiCanFi — FAQ & Security Assurance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── WiCanFi Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --bg-page: #f8fafc;
+      --glass-card: rgba(255, 255, 255, 0.92);
+      --glass-card-hover: rgba(255, 255, 255, 0.98);
+      --border-subtle: rgba(203, 213, 225, 0.85);
+      --border-highlight: rgba(148, 163, 184, 0.85);
+
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-accent: #d97706;
+
+      --accent-blue: #d97706;
+      --accent-blue-hover: #b45309;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #ecfdf5;
+      --accent-emerald-border: #a7f3d0;
+      
+      --accent-amber: #d97706;
+      --accent-amber-light: #fffbeb;
+      --accent-amber-border: #fde68a;
+
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    /* Ambient Lighting Mesh */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .glow-top {
+      width: 500px;
+      height: 400px;
+      top: -120px;
+      left: 15%;
+      background: radial-gradient(circle, rgba(224, 231, 255, 0.9) 0%, transparent 70%);
+    }
+
+    .glow-center {
+      width: 540px;
+      height: 440px;
+      top: 35%;
+      right: -120px;
+      background: radial-gradient(circle, rgba(209, 250, 229, 0.75) 0%, transparent 70%);
+    }
+
+    .glow-bottom {
+      width: 450px;
+      height: 350px;
+      bottom: -60px;
+      left: 10%;
+      background: radial-gradient(circle, rgba(224, 242, 254, 0.8) 0%, transparent 70%);
+    }
+
+    /* Main Container Shell */
+    .faq-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* Glass Header */
+    .glass-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-wrapper {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s var(--ease-smooth);
+      background: #ffffff;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .header-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+      border-color: var(--border-highlight);
+    }
+
+    .header-btn-primary {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+    }
+
+    .header-btn-primary:hover {
+      background: var(--accent-blue-hover);
+      color: #ffffff;
+      border-color: var(--accent-blue-hover);
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 244, 0.85) 50%, rgba(239, 246, 255, 0.9) 100%);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+
+    .pill-emerald {
+      background: var(--accent-emerald-light);
+      color: var(--accent-emerald);
+      border: 1px solid var(--accent-emerald-border);
+    }
+
+    .pill-blue {
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+    }
+
+    .pill-purple {
+      background: #faf5ff;
+      color: #7c3aed;
+      border: 1px solid #e9d5ff;
+    }
+
+    .hero-title {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 660px;
+    }
+
+    /* Elevated GitHub Star Showcase Card (Top Position) */
+    .github-star-card {
+      position: relative;
+      background: linear-gradient(135deg, #090e17 0%, #111827 50%, #1e1b4b 100%);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 22px 24px;
+      border: 1px solid rgba(129, 140, 248, 0.35);
+      box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.25), 0 0 24px rgba(99, 102, 241, 0.12);
+      overflow: hidden;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .github-star-card:hover {
+      border-color: rgba(165, 180, 252, 0.55);
+      box-shadow: 0 16px 40px -6px rgba(15, 23, 42, 0.3), 0 0 32px rgba(99, 102, 241, 0.22);
+    }
+
+    .gh-card-ambient {
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(234, 179, 8, 0.16) 0%, rgba(99, 102, 241, 0.14) 50%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    .gh-card-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .gh-info-side {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      flex: 1 1 380px;
+    }
+
+    .gh-avatar-container {
+      position: relative;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .gh-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .github-star-card:hover .gh-avatar {
+      transform: scale(1.06) rotate(-3deg);
+    }
+
+    .gh-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .gh-badge-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gh-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2.5px 8.5px;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+    }
+
+    .gh-pill-gold {
+      background: rgba(251, 191, 36, 0.18);
+      color: #fde047;
+      border: 1px solid rgba(250, 204, 21, 0.35);
+    }
+
+    .gh-pill-subtle {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .gh-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gh-repo-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.01em;
+    }
+
+    .gh-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #3b82f6;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .gh-tagline {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 500px;
+    }
+
+    .gh-actions-side {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .gh-btn-star {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      text-decoration: none;
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+      transition: all 0.25s var(--ease-smooth);
+      position: relative;
+    }
+
+    .gh-btn-star .star-icon {
+      color: #f59e0b;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .gh-btn-star:hover {
+      background: #fef08a;
+      color: #713f12;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(250, 204, 21, 0.35);
+    }
+
+    .gh-btn-star:hover .star-icon {
+      transform: scale(1.25) rotate(15deg);
+    }
+
+    .star-count-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(15, 23, 42, 0.08);
+      color: #334155;
+      border-radius: 8px;
+      margin-left: 2px;
+    }
+
+    .gh-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      transition: all 0.25s var(--ease-smooth);
+    }
+
+    .gh-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Filter Controls Row */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      flex: 1;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s var(--ease-smooth);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .filter-chip:hover {
+      background: #ffffff;
+      color: var(--text-main);
+      border-color: var(--border-highlight);
+    }
+
+    .filter-chip.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+
+    .chip-count {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.08);
+      color: inherit;
+    }
+
+    .filter-chip.active .chip-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    .toggle-all-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s var(--ease-smooth);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .toggle-all-btn:hover {
+      background: #ffffff;
+      color: var(--text-main);
+      border-color: var(--border-highlight);
+    }
+
+    /* FAQ Card / Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s var(--ease-smooth);
+    }
+
+    .faq-card:hover {
+      background: var(--glass-card-hover);
+      border-color: var(--border-highlight);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .faq-card.open {
+      border-color: rgba(96, 165, 250, 0.7);
+      box-shadow: 0 6px 24px rgba(37, 99, 235, 0.07);
+    }
+
+    .faq-question {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s;
+    }
+
+    .faq-question:hover {
+      background: rgba(241, 245, 249, 0.5);
+    }
+
+    .faq-question:focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: -2px;
+    }
+
+    .faq-q-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-toggle-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    .faq-card.open .faq-toggle-icon {
+      transform: rotate(180deg);
+      background: #dbeafe;
+      color: var(--accent-blue);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+      background: rgba(248, 250, 252, 0.65);
+      border-top: 1px solid transparent;
+    }
+
+    .faq-card.open .faq-answer {
+      max-height: 1200px;
+      opacity: 1;
+      border-top-color: rgba(226, 232, 240, 0.85);
+    }
+
+    .faq-answer-inner {
+      padding: 16px 20px 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-answer-inner p {
+      margin-bottom: 0;
+    }
+
+    .faq-answer-inner code {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #0f172a;
+    }
+
+    .highlight-box {
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .highlight-emerald {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
+
+    .highlight-blue {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+    }
+
+    .highlight-amber {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+    }
+
+    /* Footer */
+    .faq-footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .faq-footer a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .faq-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient Atmosphere -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-center"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <div class="faq-shell">
+    
+    <!-- Top Header -->
+    <header class="glass-header">
+      <a href="/" class="brand" title="WiCanFi Home">
+        <div class="logo-wrapper">
+          <img src="icons/icon48.png" alt="WiCanFi Logo" id="hdrLogo" onerror="this.src='icons/icon48.png'">
+        </div>
+        <div>
+          <div class="brand-title">WiCanFi</div>
+          <div class="brand-sub">Campus Wi-Fi Automation</div>
+        </div>
+      </a>
+
+      <div class="header-links">
+        <a href="/" class="header-btn" title="Back to WiCanFi Homepage">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" rel="noopener noreferrer" class="header-btn" title="View Source on GitHub">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="/WiCanFi-Extension.zip" download="WiCanFi-Extension.zip" class="header-btn header-btn-primary" title="Download WiCanFi Extension (.zip)">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Download</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Card -->
+    <section class="hero-banner">
+      <div class="hero-badge-row">
+        <span class="pill-badge pill-emerald">🛡️ 100% Client-Side Local</span>
+        <span class="pill-badge pill-blue">🔓 Open Source (MIT License)</span>
+        <span class="pill-badge pill-purple">⚡ Zero-Knowledge Privacy</span>
+      </div>
+      <h1 class="hero-title">Frequently Asked Questions &amp; Security Assurance</h1>
+      <p class="hero-desc">
+        Everything you need to know about how WiCanFi safeguards your credentials, keeps your data private, and automates captive Wi-Fi connections transparently.
+      </p>
+    </section>
+
+    <!-- Elevated GitHub Star Showcase Card (Top Position) -->
+    <section class="github-star-card" id="githubStarCard">
+      <div class="gh-card-ambient"></div>
+      <div class="gh-card-content">
+        <div class="gh-info-side">
+          <div class="gh-avatar-container">
+            <div class="gh-avatar">
+              <svg width="26" height="26" fill="#ffffff" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+          </div>
+          <div class="gh-details">
+            <div class="gh-badge-strip">
+              <span class="gh-pill gh-pill-gold">⭐ Star on GitHub</span>
+              <span class="gh-pill gh-pill-subtle">MIT Open Source</span>
+              <span class="gh-pill gh-pill-subtle">Campus Built</span>
+            </div>
+            <div class="gh-title-row">
+              <span class="gh-repo-name">AabhasKatiyar / wicanfi</span>
+              <span class="gh-verified-badge" title="Official Repository">✓</span>
+            </div>
+            <p class="gh-tagline">
+              If WiCanFi saves you time from repetitive campus Wi-Fi logins, give us a star on GitHub! It takes 2 seconds and helps fellow students discover the tool.
+            </p>
+          </div>
+        </div>
+
+        <div class="gh-actions-side">
+          <a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" rel="noopener noreferrer" class="gh-btn-star" id="btnStarGithub" title="Star AabhasKatiyar/wicanfi on GitHub">
+            <svg class="star-icon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.165-7.333-3.856-7.333 3.856 1.399-8.165-5.934-5.784 8.2-1.192zm0 5.702l-2.223 4.505-4.972.723 3.598 3.507-.848 4.951 4.445-2.338 4.445 2.338-.848-4.951 3.598-3.507-4.972-.723z"/></svg>
+            <span class="star-btn-label">Star on GitHub</span>
+            <span class="star-count-badge" id="ghStarCount">★</span>
+          </a>
+
+          <a href="https://github.com/AabhasKatiyar/wicanfi/issues" target="_blank" rel="noopener noreferrer" class="gh-btn-secondary" id="btnReportIssue" title="Report a Bug or Suggest a Feature">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span>Report Issue</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Filter Chips & Global Controls -->
+    <div class="controls-row">
+      <div class="filter-bar" role="tablist" aria-label="Question Categories">
+        <button type="button" class="filter-chip active" data-filter="all" role="tab" aria-selected="true">
+          <span>All Questions</span>
+          <span class="chip-count">8</span>
+        </button>
+        <button type="button" class="filter-chip" data-filter="safety" role="tab" aria-selected="false">
+          <span>🛡️ Safety &amp; Privacy</span>
+          <span class="chip-count">4</span>
+        </button>
+        <button type="button" class="filter-chip" data-filter="github" role="tab" aria-selected="false">
+          <span>💻 GitHub &amp; Author</span>
+          <span class="chip-count">1</span>
+        </button>
+        <button type="button" class="filter-chip" data-filter="windows" role="tab" aria-selected="false">
+          <span>⚠️ Windows Warnings</span>
+          <span class="chip-count">2</span>
+        </button>
+        <button type="button" class="filter-chip" data-filter="automation" role="tab" aria-selected="false">
+          <span>⚡ How It Works</span>
+          <span class="chip-count">1</span>
+        </button>
+      </div>
+
+      <button type="button" class="toggle-all-btn" id="toggleAllBtn" title="Toggle Expand or Collapse all questions">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        <span>Expand All</span>
+      </button>
+    </div>
+
+    <!-- FAQ Accordion Stack -->
+    <main class="faq-list" id="faqAccordion">
+
+      <!-- Q1: Safety & Privacy -->
+      <article class="faq-card open" data-category="safety">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>🛡️</span>
+            <span>Is WiCanFi safe to use with my campus Wi-Fi credentials?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p><strong>Yes, 100% safe.</strong> WiCanFi is built from the ground up on a strict <strong>Zero-Knowledge Security Architecture</strong>:</p>
+            <div class="highlight-box highlight-emerald">
+              <strong>🔒 Where are my credentials stored?</strong><br>
+              Your student ID / username and password are saved <strong>only inside your browser's private local sandbox</strong> (<code>chrome.storage.local</code>). They exist solely on your physical computer and are never synced to any cloud database or remote analytics server.
+            </div>
+            <p>
+              When logging in, the extension communicates <strong>directly and only</strong> with your college's official captive portal gateway (<code>http://172.16.16.16:8090/</code>). No intermediary server ever intercepts or touches your Wi-Fi credentials.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q2: Can Anyone Else See My Password -->
+      <article class="faq-card" data-category="safety">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>👁️</span>
+            <span>Can the developer or anyone else see my college ID and password?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p><strong>No, absolutely not.</strong> Neither the developer, the college administration, nor any third party can see your saved password.</p>
+            <p>
+              WiCanFi contains <strong>zero backend database tracking for passwords</strong>. You can inspect the source code in Notepad or open Chrome DevTools (press <code>F12</code> ➔ Network tab) during a Wi-Fi login: you will observe that credentials are exchanged directly between your browser and the local campus gateway.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q3: GitHub & Author -->
+      <article class="faq-card" data-category="github">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>💻</span>
+            <span>Who created WiCanFi and where is the source code?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>
+              WiCanFi was created by <strong>Aabhas Katiyar</strong> as a public, open-source campus utility to solve the daily frustration of Wi-Fi session timeouts during classes, tests, and labs.
+            </p>
+            <div class="highlight-box highlight-blue">
+              <strong>🔗 Official GitHub Repository:</strong><br>
+              <a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" style="color: #1e40af; font-weight: 700; text-decoration: underline;">https://github.com/AabhasKatiyar/wicanfi</a><br>
+              <span style="font-size: 12.5px; color: #475569;">Author Profile: <a href="https://github.com/AabhasKatiyar" target="_blank" style="color: #2563eb;">@AabhasKatiyar</a></span>
+            </div>
+            <p>
+              The project is released under the <strong>MIT License</strong>. That means it is free forever, completely transparent, non-commercial, and open for community audit and contributions.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q4: Windows SmartScreen -->
+      <article class="faq-card" data-category="windows">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>⚠️</span>
+            <span>Why did Windows SmartScreen say "Unknown Publisher" or "Windows protected your PC"?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>
+              When running <code>Update-Windows.bat</code>, Windows Defender SmartScreen shows this prompt for two harmless technical reasons:
+            </p>
+            <ul style="margin-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+              <li><strong>Batch files cannot be signed:</strong> <code>.bat</code> scripts are plain text files. Microsoft's Authenticode digital signing technology only works on binary <code>.exe</code> or PowerShell files, not batch scripts.</li>
+              <li><strong>$500/year Corporate Certificate Fee:</strong> To prevent the "Unknown Publisher" prompt, Microsoft requires an Extended Validation (EV) certificate that costs $400–$600 per year and requires incorporation paperwork. Non-profit student projects do not buy corporate enterprise contracts.</li>
+            </ul>
+            <div class="highlight-box highlight-emerald">
+              <strong>⚡ How to run safely in 1 second:</strong><br>
+              On the blue "Windows protected your PC" screen, click <strong>"More info"</strong>, then click <strong>"Run anyway"</strong>.<br>
+              The updater immediately strips the web mark from all files so subsequent runs never trigger SmartScreen again!
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q5: Browsing History -->
+      <article class="faq-card" data-category="safety">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>🌐</span>
+            <span>Does WiCanFi track my browsing history or internet activity?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p><strong>Never.</strong> WiCanFi only checks whether your device is logged into campus Wi-Fi.</p>
+            <p>
+              Its Chrome Manifest V3 permissions are strictly scoped to college portal domains (<code>http://172.16.16.16:8090/*</code>) and Google's standard 204 connectivity endpoint. It does not possess permissions to monitor websites you visit, inspect search queries, or view personal traffic.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q6: Automation Details -->
+      <article class="faq-card" data-category="automation">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>⚡</span>
+            <span>How does the auto-login automation work?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Here is what happens behind the scenes in milliseconds:</p>
+            <ol style="margin-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+              <li>When your laptop joins campus Wi-Fi (e.g. TAGORE, APJ, etc.), the network controller intercepts traffic and sends a captive portal redirect.</li>
+              <li>WiCanFi's background worker detects the gateway within <strong>800 milliseconds</strong>.</li>
+              <li>It submits an authenticated HTTP request using your locally saved credentials directly to the gateway's login API (mode 191/192).</li>
+              <li>Once the campus server replies with a successful session token, the portal tab is automatically closed to keep your browser clutter-free!</li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q7: Credentials Management -->
+      <article class="faq-card" data-category="safety">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>🔑</span>
+            <span>How do I change or completely delete my saved credentials?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>You have full, instant control over your data at all times:</p>
+            <p>
+              Click the <strong>⚙ Settings</strong> gear icon in the extension popup. From the Settings Hub, you can change your student ID/password, toggle Auto-Login off, or click <strong>"Clear Saved Credentials"</strong> to instantly delete all saved data from your browser.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q8: Updating Extension -->
+      <article class="faq-card" data-category="windows">
+        <div class="faq-question">
+          <div class="faq-q-text">
+            <span>🔄</span>
+            <span>How do I update to new versions when bug fixes are released?</span>
+          </div>
+          <div class="faq-toggle-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Updating takes less than 10 seconds:</p>
+            <ol style="margin-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+              <li>Click the <strong>⤓ Download / Check for Updates</strong> icon in the extension header.</li>
+              <li>If a new version is detected, click <strong>[ Update Now ]</strong> or run <code>Update-Windows.bat</code>.</li>
+              <li>Go to <code>chrome://extensions</code> (or <code>edge://extensions</code>) and click the circular <strong>Reload (↻)</strong> icon on the WiCanFi card.</li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="faq-footer">
+      <div>WiCanFi Automated Campus Assistant · Open Source (MIT License)</div>
+      <div>Designed &amp; Developed by <a href="https://github.com/AabhasKatiyar" target="_blank" rel="noopener noreferrer">Aabhas Katiyar</a></div>
+    </footer>
+
+  </div>
+
+  <script src="faq.js"></script>
+</body>
+</html>

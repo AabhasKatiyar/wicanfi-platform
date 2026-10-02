@@ -1,0 +1,31 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/faq.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/version.json
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=60
+
+/WiCanFi-Extension.zip
+  Access-Control-Allow-Origin: *
+  Content-Type: application/octet-stream
+  Content-Disposition: attachment; filename=WiCanFi-Extension.zip; filename*=UTF-8''WiCanFi-Extension.zip
+  Cache-Control: public, max-age=86400

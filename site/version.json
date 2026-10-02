@@ -1,0 +1,9 @@
+{
+  "version": "1.0.8",
+  "minSupportedVersion": "1.0.0",
+  "releaseDate": "2026-10-02",
+  "releaseNotes": "v1.0.8: Official Portal Stability & Complete CSP Compliance. Eliminates official captive portal auto-closing loop on user-opened tabs by isolating tab lifecycle management strictly to automated background bootstrap instances. Resolves all browser Content Security Policy (CSP) inline script and javascript: URL violations through pure DOM event capturing, guards against injection on internal browser contexts, and preserves session recovery status.",
+  "downloadUrl": "https://github.com/AabhasKatiyar/wicanfi/releases/latest/download/WiCanFi-Extension.zip",
+  "githubRepo": "https://github.com/AabhasKatiyar/wicanfi",
+  "updateInstructions": "Double-click Update-Windows.bat (Windows) or Update-Mac.command (Mac), then reload on edge://extensions or chrome://extensions."
+}

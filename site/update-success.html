@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WiCanFi — Update Successfully Installed (v1.0.8)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── WiCanFi Design Tokens (Identical to Extension & Options Hub) ────── */
+    :root {
+      --bg-page: #f8fafc;
+      --glass-card: rgba(255, 255, 255, 0.90);
+      --glass-card-hover: rgba(255, 255, 255, 0.98);
+      --glass-input: rgba(255, 255, 255, 0.95);
+      
+      --border-subtle: rgba(203, 213, 225, 0.85);
+      --border-highlight: rgba(148, 163, 184, 0.85);
+      --border-focus: rgba(99, 102, 241, 0.8);
+
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-accent: #0284c7;
+
+      --accent-blue: #2563eb;
+      --accent-blue-hover: #1d4ed8;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #ecfdf5;
+      --accent-emerald-border: #a7f3d0;
+      
+      --accent-amber: #d97706;
+      --accent-amber-light: #fffbeb;
+      --accent-amber-border: #fde68a;
+
+      --accent-rose: #e11d48;
+      --accent-rose-light: #fff1f2;
+      --accent-rose-border: #fecdd3;
+
+      --accent-cyan: #0891b2;
+      --accent-cyan-light: #ecfeff;
+      --accent-cyan-border: #a5f3fc;
+
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+
+    /* ─── Ambient Glow Mesh (Matching WiCanFi Options & Popup) ────────────── */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(85px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    .glow-top {
+      width: 480px;
+      height: 380px;
+      top: -120px;
+      left: 15%;
+      background: radial-gradient(circle, rgba(224, 231, 255, 0.9) 0%, transparent 70%);
+    }
+
+    .glow-center {
+      width: 520px;
+      height: 420px;
+      top: 35%;
+      right: -120px;
+      background: radial-gradient(circle, rgba(224, 242, 254, 0.9) 0%, transparent 70%);
+    }
+
+    .glow-bottom {
+      width: 440px;
+      height: 340px;
+      bottom: -60px;
+      left: 10%;
+      background: radial-gradient(circle, rgba(243, 232, 255, 0.8) 0%, transparent 70%);
+    }
+
+    /* ─── Shell Container ────────────────────────────────────────────────── */
+    .options-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* ─── Glass Header (Matching Extension Header) ───────────────────────── */
+    .glass-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: var(--glass-card);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-wrapper {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+      object-fit: cover;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .title-row h1 {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text-main);
+    }
+
+    .version-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      letter-spacing: 0.3px;
+    }
+
+    .subtitle {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background: var(--accent-emerald-light);
+      color: var(--accent-emerald);
+      border: 1px solid var(--accent-emerald-border);
+    }
+
+    .badge-browser {
+      background: #f1f5f9;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-sans);
+    }
+
+    /* ─── Hero Banner Card ───────────────────────────────────────────────── */
+    .hero-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 26px 28px;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .hero-beacon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: var(--accent-emerald-light);
+      border: 1px solid var(--accent-emerald-border);
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.15);
+    }
+
+    .hero-beacon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .hero-text h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .hero-text p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ─── Section Header ─────────────────────────────────────────────────── */
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    .section-title-row svg {
+      color: var(--accent-blue);
+    }
+
+    .section-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.2px;
+    }
+
+    /* ─── Changelog Cards Stack ─────────────────────────────────────────── */
+    .changelog-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .glass-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 18px 22px;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      transition: all 0.25s var(--ease-smooth);
+    }
+
+    .glass-card:hover {
+      background: var(--glass-card-hover);
+      border-color: var(--border-highlight);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      transform: translateY(-1.5px);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 12px;
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-rose { background: var(--accent-rose-light); color: var(--accent-rose); border: 1px solid var(--accent-rose-border); }
+    .icon-blue { background: #eff6ff; color: var(--accent-blue); border: 1px solid #bfdbfe; }
+    .icon-emerald { background: var(--accent-emerald-light); color: var(--accent-emerald); border: 1px solid var(--accent-emerald-border); }
+    .icon-amber { background: var(--accent-amber-light); color: var(--accent-amber); border: 1px solid var(--accent-amber-border); }
+    .icon-cyan { background: var(--accent-cyan-light); color: var(--accent-cyan); border: 1px solid var(--accent-cyan-border); }
+
+    .card-heading {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .status-tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tag-emerald {
+      background: var(--accent-emerald-light);
+      color: #047857;
+      border: 1px solid var(--accent-emerald-border);
+    }
+
+    .tag-blue {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .card-body-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      padding-left: 48px;
+    }
+
+    /* ─── Reload Instructions Card ───────────────────────────────────────── */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .step-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ─── Buttons (Matching Options & Popup Stylesheet) ───────────────────── */
+    .btn-action {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 8px 15px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      transition: all 0.2s var(--ease-smooth);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+
+    .btn-action:hover {
+      background: var(--glass-card-hover);
+      border-color: var(--border-highlight);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-hover));
+      color: #ffffff;
+      border: 1px solid rgba(37, 99, 235, 0.8);
+      box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Monospace Code Path Box */
+    .path-card {
+      background: #f1f5f9;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .path-text {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      word-break: break-all;
+    }
+
+    /* ─── Floating Toast (Matching options.css) ─────────────────────────── */
+    .glass-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s var(--ease-spring);
+      z-index: 1000;
+    }
+
+    .glass-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .toast-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────────────── */
+    .glass-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .security-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Atmospheric Lighting (Same as Extension Options) -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-center"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <div class="options-shell">
+
+    <!-- ─── Header ──────────────────────────────────────────────────────── -->
+    <header class="glass-header">
+      <div class="header-left">
+        <div class="logo-wrapper">
+          <img src="data:image/png;base64,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" alt="WiCanFi" class="logo-img" id="mainLogo">
+        </div>
+        <div class="header-copy">
+          <div class="title-row">
+            <h1>WiCanFi</h1>
+            <span class="version-chip" id="versionTag">v1.0.8</span>
+          </div>
+          <p class="subtitle">Campus Wi-Fi Automation Assistant</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge-pill badge-success">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Update Successful
+        </span>
+        <span class="badge-pill badge-browser" id="browserBadge">🌐 Detecting Browser...</span>
+      </div>
+    </header>
+
+    <!-- ─── Hero Banner Card ─────────────────────────────────────────────── -->
+    <section class="hero-card">
+      <div class="hero-beacon">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+        </svg>
+      </div>
+      <div class="hero-text">
+        <h2>WiCanFi v1.0.8 is Ready &amp; Up to Date!</h2>
+        <p>The latest build with portal keepalive stability, complete CSP compliance, and dedicated check-update controls is installed.</p>
+      </div>
+    </section>
+
+    <!-- ─── PROMINENT NEXT STEPS (Action Required to Finish Update) ─────── -->
+    <section class="glass-card" style="border: 2px solid #3b82f6; background: rgba(239, 246, 255, 0.85); box-shadow: 0 8px 30px rgba(37, 99, 235, 0.12); margin-bottom: 24px;">
+      <div class="card-top" style="margin-bottom: 6px;">
+        <div class="card-title-group">
+          <div class="card-icon icon-blue" style="width: 40px; height: 40px;">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 style="font-size: 17.5px; font-weight: 800; color: #1e40af;">Next Steps: Complete Your Update (Takes 5 Seconds)</h3>
+            <p style="font-size: 13.5px; color: #1d4ed8; font-weight: 500;">Your files are updated! Complete these 3 simple steps so your browser loads the new version:</p>
+          </div>
+        </div>
+        <span class="status-tag tag-blue" style="font-weight: 800; font-size: 12px;">⚡ Action Required</span>
+      </div>
+
+      <div class="steps-list" style="margin-top: 16px;">
+        
+        <!-- Step 1 -->
+        <div class="step-item">
+          <div class="step-badge" style="background: #2563eb; color: #ffffff; border-color: #1d4ed8;">1</div>
+          <div class="step-content">
+            <div class="step-title" style="font-size: 15px; color: #0f172a;">Go to your browser's Extensions page:</div>
+            <p class="step-desc" id="browserHint" style="font-size: 13.5px; color: #334155; margin-bottom: 8px;">Click below to copy your browser's Extensions URL, paste into the address bar, and press Enter:</p>
+            <div class="action-row">
+              <button type="button" class="btn-action btn-primary" id="btnAutoCopy" onclick="copyAutoDetectedUrl()" style="background: #2563eb; color: #ffffff; border: none; font-weight: 700;">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/></svg>
+                <span id="btnAutoCopyText">Copy Extensions URL</span>
+              </button>
+              <button type="button" class="btn-action" id="btnChromeCopy" onclick="copyText('chrome://extensions', 'Copied chrome://extensions to clipboard!')">
+                Copy "chrome://extensions"
+              </button>
+              <button type="button" class="btn-action" id="btnEdgeCopy" onclick="copyText('edge://extensions', 'Copied edge://extensions to clipboard!')">
+                Copy "edge://extensions"
+              </button>
+            </div>
+            <p style="font-size: 12px; color: #64748b; margin-top: 6px;">💡 <em>Quick shortcut:</em> You can also click the Extensions puzzle icon (🧩) at the top-right of your browser and click "Manage extensions".</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-item">
+          <div class="step-badge" style="background: #2563eb; color: #ffffff; border-color: #1d4ed8;">2</div>
+          <div class="step-content">
+            <div class="step-title" style="font-size: 15px; color: #0f172a;">Make sure "Developer mode" is switched ON:</div>
+            <p class="step-desc" style="font-size: 13.5px; color: #334155;">Look at the top-right (Chrome) or top-left (Edge) corner of the Extensions page. Make sure the toggle switch for <strong>Developer mode</strong> is switched <strong>ON</strong>.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-item">
+          <div class="step-badge" style="background: #2563eb; color: #ffffff; border-color: #1d4ed8;">3</div>
+          <div class="step-content">
+            <div class="step-title" style="font-size: 15px; color: #0f172a;">Click the circular Reload (↻) icon on the WiCanFi card:</div>
+            <p class="step-desc" style="font-size: 13.5px; color: #334155; margin-bottom: 8px;">Find <strong>WiCanFi</strong> in your installed extensions list, and click its circular <strong>Reload (↻)</strong> icon. That's it! WiCanFi will immediately reload with version <strong>v1.0.8</strong>.</p>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px 14px; font-size: 12.5px; color: #92400e; line-height: 1.45;">
+              ⚠️ <strong>Important distinction:</strong> Make sure you click the Reload (↻) button on the browser's <em>Extensions tab</em> (chrome://extensions / edge://extensions) — <u>not</u> the update check icon inside the extension popup!
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Trust & Security: Why Windows Flags Scripts (SmartScreen FAQ) ─── -->
+    <section class="glass-card" style="border: 1.5px solid #a7f3d0; background: rgba(240, 253, 244, 0.85); box-shadow: 0 4px 20px rgba(5, 150, 105, 0.08); margin-bottom: 24px;">
+      <div class="card-top" style="margin-bottom: 8px;">
+        <div class="card-title-group">
+          <div class="card-icon" style="width: 40px; height: 40px; background: #ecfdf5; color: #059669; border: 1.5px solid #a7f3d0;">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 style="font-size: 16.5px; font-weight: 800; color: #065f46;">Is WiCanFi Safe? (Windows "Unknown Publisher" Notice)</h3>
+            <p style="font-size: 13px; color: #047857; font-weight: 500;">Why Windows SmartScreen flags open-source update scripts and how your security is guaranteed</p>
+          </div>
+        </div>
+        <span class="status-tag" style="background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; font-weight: 800; font-size: 12px;">🛡️ 100% Open-Source</span>
+      </div>
+
+      <div style="font-size: 13.5px; color: #334155; line-height: 1.6; display: flex; flex-direction: column; gap: 12px;">
+        <p>
+          When you download and run <code>Update-Windows.bat</code>, Windows Defender SmartScreen may display a blue dialog stating: <em>"Windows protected your PC — Publisher: Unknown publisher"</em>.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 2px;">
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <div style="font-weight: 700; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>❓ Why does Windows show this?</span>
+            </div>
+            <p style="font-size: 12.8px; color: #475569;">
+              Windows batch files (<code>.bat</code>) are plain text scripts and <strong>cannot technically hold digital certificates</strong>. Microsoft also requires commercial corporations to purchase $500/year "Extended Validation" certificates. Free student projects do not have corporate certificate contracts, so Windows labels all downloaded batch files as "Unknown".
+            </p>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid #bbf7d0; border-radius: 10px; padding: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <div style="font-weight: 700; color: #166534; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+              <span>✓ Complete Transparency &amp; Safety</span>
+            </div>
+            <p style="font-size: 12.8px; color: #15803d;">
+              WiCanFi is open-source under the MIT license. Every single line of <code>Update-Windows.bat</code> is open and inspectable in Notepad. It contains zero binary exes, zero telemetry tracking of passwords, and zero third-party adware.
+            </p>
+          </div>
+        </div>
+
+        <div style="background: #f1f5f9; border-radius: 8px; padding: 12px 14px; font-size: 12.5px; color: #334155; border: 1px solid #e2e8f0;">
+          <strong>⚡ Two ways to run without seeing warnings:</strong>
+          <ul style="margin-left: 20px; margin-top: 6px; display: flex; flex-direction: column; gap: 4px;">
+            <li><strong>Quick run:</strong> On the blue Windows SmartScreen prompt, click <u>More info</u> ➔ <u>Run anyway</u>. The updater will automatically unblock future updates!</li>
+            <li><strong>Permanent unblock:</strong> Right-click <code>WiCanFi-Extension.zip</code> before extracting ➔ Click <em>Properties</em> ➔ Check the <strong>"Unblock"</strong> box at the bottom ➔ Click <em>OK</em>. All files will open with zero warnings!</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── What Was Fixed & Improved ────────────────────────────────────── -->
+    <div class="section-title-row">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h3 class="section-title">What Was Fixed &amp; Improved in v1.0.8</h3>
+    </div>
+
+    <div class="changelog-stack">
+      
+      <!-- v1.0.8: Portal Loop Fix & CSP -->
+      <article class="glass-card" style="border-color: rgba(5, 150, 105, 0.4); background: rgba(236, 253, 245, 0.6);">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-emerald">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+              </svg>
+            </div>
+            <h4 class="card-heading" style="color: #065f46;">Official Captive Portal Auto-Close Loop Fixed</h4>
+          </div>
+          <span class="status-tag tag-emerald">★ Brand New in v1.0.8</span>
+        </div>
+        <p class="card-body-text" style="color: #047857;">Fixed the glitch where opening the official Wi-Fi portal page closed repeatedly every 700ms. Isolated tab auto-closing strictly to background bootstrap instances. Any portal tabs you open manually or via the popup will remain open so you can view your quota, session, or account status uninterrupted.</p>
+      </article>
+
+      <!-- v1.0.8: Complete CSP Compliance -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-blue">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Complete Content Security Policy (CSP) Compliance</h4>
+          </div>
+          <span class="status-tag tag-emerald">✓ Fixed in v1.0.8</span>
+        </div>
+        <p class="card-body-text">Eliminated all browser CSP inline script errors and JavaScript URL violations. Replaced inline script injection with standard capturing DOM listeners, safe element interactions, and direct XML API POSTs. Added strict URL gating so automation never executes on internal browser pages like chrome://newtab.</p>
+      </article>
+
+      <!-- v1.0.8: Dedicated Check Update Icon -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-cyan">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Dedicated "Check for Updates" Icon in Popup</h4>
+          </div>
+          <span class="status-tag tag-blue">✓ Enhanced in v1.0.8</span>
+        </div>
+        <p class="card-body-text">Replaced the circular reload icon in the extension popup header with a dedicated download/update icon. This completely eliminates confusion between checking for new updates and reloading the extension on the browser's Extensions page.</p>
+      </article>
+            <div class="card-icon icon-emerald">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+              </svg>
+            </div>
+            <h4 class="card-heading" style="color: #065f46;">Reliable Wi-Fi Auto-Login &amp; Portal Stability</h4>
+          </div>
+          <span class="status-tag tag-emerald">★ Brand New in v1.0.7</span>
+        </div>
+        <p class="card-body-text" style="color: #047857;">Fixed continuous 12-second captive portal reload loops by implementing transition-based Wi-Fi session gating in the Windows agent. Keeps the official Cyberoam portal page open after sign-in so that firewall keepalive heartbeats are never killed by tab closure. Injects form submissions directly into the page's main-world context to eliminate script blocking, and prevents persistent logout lockouts across Wi-Fi reconnects.</p>
+      </article>
+      
+      <!-- Fix 1: Sign Out & Session Release -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-rose">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Gateway Sign Out &amp; Session Termination Fix</h4>
+          </div>
+          <span class="status-tag tag-emerald">✓ Fixed in v1.0.3</span>
+        </div>
+        <p class="card-body-text">Eliminated the bug where clicking "Sign Out &amp; Disconnect" got stuck in "Signing out..." or falsely reported "Internet Connected". Resolved the Cyberoam/Sophos HTTP 202 unauthenticated XML template bug, enforced mode 193 session termination, and established persistent signed-out storage so auto-login does not inappropriately re-arm.</p>
+      </article>
+
+      <!-- Fix 2: Original Portal Buttons Restored -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-blue">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Original Portal Buttons Restored</h4>
+          </div>
+          <span class="status-tag tag-emerald">✓ Fixed &amp; Verified</span>
+        </div>
+        <p class="card-body-text">Resolved the glitch where portal buttons (Username, Password, Sign-In, and Sign-Out) were hidden by intrusive DOM modifications. The native portal UI now renders cleanly with all official buttons accessible.</p>
+      </article>
+
+      <!-- Fix 3: Accurate Internet Detection -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-emerald">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Accurate "Real Internet" 204 Probe Detection</h4>
+          </div>
+          <span class="status-tag tag-emerald">✓ Fixed &amp; Verified</span>
+        </div>
+        <p class="card-body-text">Eliminated false "Internet Connected" status when the portal blocks traffic. WiCanFi now strictly tests genuine non-redirected 204 internet probes and live firewall gateway status.</p>
+      </article>
+
+      <!-- Fix 4: Instant Login & Re-auth -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-amber">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Instant Login &amp; Re-authentication</h4>
+          </div>
+          <span class="status-tag tag-emerald">✓ Fixed &amp; Verified</span>
+        </div>
+        <p class="card-body-text">Clicking "Login" or "Re-authenticate" now directly transmits credentials to the gateway without being blocked by premature connection bypasses, immediately activating internet access.</p>
+      </article>
+
+      <!-- Fix 5: Multi-Browser Auto-Updater Launcher -->
+      <article class="glass-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <div class="card-icon icon-cyan">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+              </svg>
+            </div>
+            <h4 class="card-heading">Smart Multi-Browser Updater Launcher</h4>
+          </div>
+          <span class="status-tag tag-blue">✓ Enhanced in v1.0.3</span>
+        </div>
+        <p class="card-body-text">Resolved Windows batch syntax parentheses expansion crash. Auto-detects whether you are using Microsoft Edge, Google Chrome, Brave, or your system default browser, immediately launching this release changelog tab upon completion.</p>
+      </article>
+
+    </div>
+
+
+
+    <!-- ─── Direct Shortcuts Bar ────────────────────────────────────────── -->
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 4px;">
+      <a href="https://wicanfi.pages.dev/" class="btn-action" style="background: rgba(217, 119, 6, 0.1); color: #d97706; border-color: rgba(217, 119, 6, 0.3);">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+        WiCanFi Home
+      </a>
+      <a href="http://172.16.16.16:8090/httpclient.html" target="_blank" class="btn-action">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        Open Campus Portal Tab
+      </a>
+      <a href="http://localhost:2134/?bypass=1" target="_blank" class="btn-action">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+        Open Admin Console (:2134)
+      </a>
+      <button type="button" class="btn-action" onclick="testLiveInternet()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        <span id="testNetBtnText">Test Live Internet</span>
+      </button>
+    </div>
+
+    <!-- ─── Footer (Matching popup.html Glass Footer) ───────────────────── -->
+    <footer class="glass-footer">
+      <div class="security-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>Credentials stored strictly on this device</span>
+      </div>
+      <div>
+        WiCanFi v1.0.5 • Campus Wi-Fi Automation Assistant • Tab can be closed anytime
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div class="glass-toast" id="toast">
+    <span class="toast-dot"></span>
+    <span id="toastText">Copied to clipboard</span>
+  </div>
+
+  <script>
+    // Discover current directory dynamically if run via file://
+    try {
+      if (window.location.protocol === 'file:') {
+        const fullPath = decodeURIComponent(window.location.pathname);
+        const folder = fullPath.substring(fullPath.indexOf(':') !== -1 ? fullPath.indexOf(':') - 1 : 0, fullPath.lastIndexOf('/'));
+        if (folder) {
+          const formatted = folder.replace(/\//g, '\\');
+          document.getElementById('currentFolderPath').textContent = formatted;
+        }
+      }
+    } catch (_) {}
+
+    // Fallback local image loader if base64 ever fails
+    const mainLogo = document.getElementById('mainLogo');
+    if (mainLogo) {
+      mainLogo.onerror = function() {
+        if (!this.getAttribute('data-retried')) {
+          this.setAttribute('data-retried', '1');
+          this.src = 'icons/icon48.png';
+        }
+      };
+    }
+
+    // Dynamic Version loader from manifest or version.json if available
+    fetch('manifest.json')
+      .then(r => r.json())
+      .then(m => {
+        if (m.version) {
+          document.getElementById('versionTag').textContent = 'v' + m.version;
+        }
+      })
+      .catch(() => {});
+
+    // Browser auto-detection
+    let detectedExtUrl = 'chrome://extensions';
+    let detectedBrowserName = 'Browser';
+
+    function initBrowserDetection() {
+      const ua = navigator.userAgent;
+      const isEdge = /edg\//i.test(ua);
+      const isBrave = (navigator.brave && typeof navigator.brave.isBrave === 'function') || /brave/i.test(ua);
+      const isOpera = /opr\//i.test(ua);
+      const isChrome = /chrome|crios/i.test(ua) && !isEdge && !isOpera;
+
+      const badge = document.getElementById('browserBadge');
+      const autoBtnText = document.getElementById('btnAutoCopyText');
+      const hint = document.getElementById('browserHint');
+      const btnChrome = document.getElementById('btnChromeCopy');
+      const btnEdge = document.getElementById('btnEdgeCopy');
+
+      if (isEdge) {
+        detectedExtUrl = 'edge://extensions';
+        detectedBrowserName = 'Microsoft Edge';
+        badge.innerHTML = '🌐 Microsoft Edge';
+        badge.style.background = '#f0f9ff';
+        badge.style.color = '#0284c7';
+        badge.style.borderColor = '#bae6fd';
+        autoBtnText.textContent = 'Copy "edge://extensions"';
+        hint.innerHTML = 'Detected <strong>Microsoft Edge</strong>. Click below to copy the Extensions URL, paste into the address bar, and press Enter:';
+        if (btnEdge) btnEdge.style.display = 'none';
+      } else if (isChrome) {
+        detectedExtUrl = 'chrome://extensions';
+        detectedBrowserName = 'Google Chrome';
+        badge.innerHTML = '🌐 Google Chrome';
+        badge.style.background = '#eff6ff';
+        badge.style.color = '#2563eb';
+        badge.style.borderColor = '#bfdbfe';
+        autoBtnText.textContent = 'Copy "chrome://extensions"';
+        hint.innerHTML = 'Detected <strong>Google Chrome</strong>. Click below to copy the Extensions URL, paste into the address bar, and press Enter:';
+        if (btnChrome) btnChrome.style.display = 'none';
+      } else if (isBrave) {
+        detectedExtUrl = 'brave://extensions';
+        detectedBrowserName = 'Brave';
+        badge.innerHTML = '🦁 Brave Browser';
+        badge.style.background = '#fff7ed';
+        badge.style.color = '#ea580c';
+        badge.style.borderColor = '#ffedd5';
+        autoBtnText.textContent = 'Copy "brave://extensions"';
+        hint.innerHTML = 'Detected <strong>Brave Browser</strong>. Click below to copy the Extensions URL:';
+      } else if (isOpera) {
+        detectedExtUrl = 'opera://extensions';
+        detectedBrowserName = 'Opera';
+        badge.innerHTML = '🌐 Opera';
+        badge.style.background = '#fef2f2';
+        badge.style.color = '#dc2626';
+        badge.style.borderColor = '#fecaca';
+        autoBtnText.textContent = 'Copy "opera://extensions"';
+      } else {
+        detectedExtUrl = 'chrome://extensions';
+        badge.innerHTML = '🌐 Web Browser';
+      }
+    }
+
+    function copyAutoDetectedUrl() {
+      copyText(detectedExtUrl, `Copied ${detectedExtUrl} to clipboard! Paste it into your address bar.`);
+    }
+
+    try {
+      initBrowserDetection();
+    } catch (_) {}
+
+    function copyText(text, msg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(msg || 'Copied to clipboard!');
+        }).catch(() => {
+          prompt('Copy this link:', text);
+        });
+      } else {
+        prompt('Copy this link:', text);
+      }
+    }
+
+    function copyFolder() {
+      const path = document.getElementById('currentFolderPath').textContent;
+      copyText(path, 'Extension folder path copied to clipboard!');
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toastText');
+      text.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    async function testLiveInternet() {
+      const btnText = document.getElementById('testNetBtnText');
+      btnText.textContent = 'Testing connection...';
+      const start = Date.now();
+      try {
+        const res = await fetch('http://clients3.google.com/generate_204', { cache: 'no-store' });
+        const ms = Date.now() - start;
+        if (res.status === 204 && !res.redirected) {
+          btnText.textContent = `✓ Online (${ms}ms)`;
+          showToast(`Internet is active and fast (${ms}ms response)`);
+        } else {
+          btnText.textContent = '⚠️ Portal Login Required';
+          showToast('Network connected, but captive portal login required.');
+        }
+      } catch (e) {
+        btnText.textContent = '✗ Offline / Firewall Blocked';
+        showToast('Internet offline. Connect to Wi-Fi.');
+      }
+    }
+  </script>
+</body>
+</html>
