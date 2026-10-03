@@ -50,6 +50,9 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -58,6 +61,8 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -1929,8 +1934,13 @@ section[id], div[id] {
   scroll-margin-top: 90px;
 }
 
-/* ─── Comprehensive Responsive Breakpoints ───────────────────────── */
+/* ─── Comprehensive Responsive Breakpoints (Mobile First Optimized) ── */
 
+.desktop-only {
+  display: inline;
+}
+
+/* 1. Laptops and Small Desktops (max-width: 1200px) */
 @media (max-width: 1200px) {
   .nav-menu {
     gap: 14px;
@@ -1940,13 +1950,13 @@ section[id], div[id] {
   }
 }
 
-/* 1. iPad Pro & Large Tablets (max-width: 1040px) */
+/* 2. Tablets & iPad Pro (max-width: 1040px) */
 @media (max-width: 1040px) {
   .nav-menu {
-    display: none;
+    display: none !important;
   }
   .nav-toggle {
-    display: flex;
+    display: flex !important;
   }
   .container {
     max-width: 100%;
@@ -1964,18 +1974,40 @@ section[id], div[id] {
   }
 }
 
-/* 2. iPad Portrait & Standard Tablets (max-width: 960px) */
-@media (max-width: 960px) {
-  .nav-menu {
+/* 3. Small Tablets, Phablets & Mobile Landscape (max-width: 900px) */
+@media (max-width: 900px) {
+  .desktop-only {
     display: none;
   }
-  .nav-toggle {
-    display: flex;
+  .navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .nav-shell {
+    padding: 10px 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .brand-sub {
+    display: none !important;
+  }
+  .nav-actions .nav-btn-gh {
+    display: none !important;
+  }
+  .nav-actions {
+    gap: 8px;
   }
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 40px;
+    gap: 36px;
   }
   .hero-content {
     display: flex;
@@ -1988,12 +2020,13 @@ section[id], div[id] {
   .hero-desc {
     margin-left: auto;
     margin-right: auto;
-    max-width: 620px;
+    max-width: 580px;
   }
   .hero-privacy-guarantee {
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+    max-width: 540px;
   }
   .hero-cta-group {
     justify-content: center;
@@ -2005,6 +2038,12 @@ section[id], div[id] {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0 4px;
+  }
+  .real-popup-mockup {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
   }
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2036,7 +2075,7 @@ section[id], div[id] {
   .github-banner {
     flex-direction: column;
     text-align: center;
-    padding: 28px 24px;
+    padding: 26px 20px;
   }
   .gh-banner-left {
     flex-direction: column;
@@ -2052,7 +2091,7 @@ section[id], div[id] {
   }
 }
 
-/* 3. Phablets & Small Tablets (max-width: 768px) */
+/* 4. Small Tablets & Large Phones (max-width: 768px) */
 @media (max-width: 768px) {
   .hero-title {
     font-size: clamp(28px, 6.5vw, 38px);
@@ -2061,12 +2100,12 @@ section[id], div[id] {
     font-size: 15px;
   }
   .section {
-    padding: 40px 0;
+    padding: 36px 0;
   }
   .problem-box,
   .solution-box,
   .scenario-card {
-    padding: 24px 20px;
+    padding: 22px 18px;
   }
   .install-tabs-nav {
     gap: 6px;
@@ -2075,40 +2114,75 @@ section[id], div[id] {
     font-size: 13px;
     padding: 8px 14px;
   }
+  .solution-grid,
+  .steps-grid,
+  .scenario-timeline {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* 4. Standard Mobile Phones (max-width: 640px) */
+/* 5. Standard Mobile Phones (max-width: 640px) */
 @media (max-width: 640px) {
   .container {
-    padding: 0 14px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .navbar {
-    top: 8px;
-    margin-bottom: 16px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
   }
   .nav-shell {
-    padding: 8px 14px;
+    padding: 10px 0;
+    border-radius: 0;
+  }
+  .brand-logo-wrap {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+  .brand-title {
+    font-size: 16px;
+  }
+  .brand-sub {
+    display: none !important;
   }
   .nav-actions {
     gap: 8px;
   }
   .nav-actions .nav-btn-gh {
-    display: none;
+    display: none !important;
   }
   .nav-actions .nav-btn-download {
-    padding: 8px 14px;
-    font-size: 12.5px;
+    padding: 7px 12px;
+    font-size: 12px;
+    border-radius: 8px;
+    gap: 5px;
+  }
+  .nav-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 7px;
   }
   .hero-section {
-    padding: 20px 0 36px;
+    padding: 24px 0 36px;
   }
   .hero-title {
-    font-size: clamp(24px, 7vw, 32px);
-    line-height: 1.2;
+    font-size: clamp(26px, 7vw, 33px);
+    line-height: 1.22;
     margin-bottom: 14px;
   }
   .hero-desc {
-    font-size: 14px;
+    font-size: 14.5px;
+    line-height: 1.6;
     margin-bottom: 18px;
   }
   .hero-badge-strip {
@@ -2117,7 +2191,7 @@ section[id], div[id] {
   }
   .pill-badge {
     font-size: 11px;
-    padding: 3px 10px;
+    padding: 3px 9px;
   }
   .hero-privacy-guarantee {
     padding: 10px 12px;
@@ -2126,8 +2200,8 @@ section[id], div[id] {
     margin-bottom: 20px;
   }
   .privacy-guarantee-badge {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
   .privacy-guarantee-title {
     font-size: 11px;
@@ -2146,58 +2220,77 @@ section[id], div[id] {
     width: 100%;
     justify-content: center;
     padding: 12px 18px;
+    font-size: 14.5px;
   }
   .hero-check-row {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
     width: 100%;
-    max-width: 320px;
     margin: 0 auto;
     font-size: 12.5px;
   }
+  .real-popup-mockup {
+    width: 100%;
+    max-width: 100%;
+  }
+  .mock-body {
+    padding: 14px 12px;
+  }
+  .mock-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .mock-actions-row {
+    gap: 6px;
+  }
+  .mock-btn-auth,
+  .mock-btn-logout {
+    font-size: 11px;
+    padding: 8px 6px;
+  }
   .metrics-strip {
-    padding: 10px 0 32px;
+    padding: 10px 0 28px;
   }
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
   .metric-item {
-    padding: 14px 8px;
+    padding: 12px 8px;
   }
   .metric-val {
-    font-size: 22px;
+    font-size: 20px;
   }
   .metric-title {
-    font-size: 12px;
+    font-size: 11.5px;
   }
   .metric-sub {
-    font-size: 11px;
+    font-size: 10.5px;
   }
   .section-head {
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
   .section-title {
-    font-size: 24px;
+    font-size: 22px;
   }
   .section-desc {
-    font-size: 14px;
+    font-size: 13.5px;
   }
   .problem-box,
   .solution-box,
   .scenario-card {
-    padding: 20px 16px;
+    padding: 18px 14px;
     border-radius: var(--radius-lg);
   }
   .problem-box-title,
   .solution-box-title,
   .scenario-title {
-    font-size: 19px;
+    font-size: 18px;
   }
   .problem-lead-text,
   .solution-lead-text {
-    font-size: 13.5px;
+    font-size: 13px;
   }
   .problem-point-card,
   .solution-card,
@@ -2206,7 +2299,7 @@ section[id], div[id] {
   .why-card,
   .step-card,
   .download-card {
-    padding: 16px;
+    padding: 16px 14px;
   }
   .install-tabs-nav {
     display: grid;
@@ -2218,15 +2311,6 @@ section[id], div[id] {
     justify-content: center;
     padding: 9px 8px;
     font-size: 12px;
-  }
-  .steps-grid {
-    grid-template-columns: 1fr;
-  }
-  .solution-grid {
-    grid-template-columns: 1fr;
-  }
-  .scenario-timeline {
-    grid-template-columns: 1fr;
   }
   .github-banner {
     padding: 20px 16px;
@@ -2240,7 +2324,7 @@ section[id], div[id] {
     justify-content: center;
   }
   .footer {
-    padding: 32px 0 20px;
+    padding: 30px 0 20px;
   }
   .footer-grid {
     grid-template-columns: 1fr;
@@ -2261,24 +2345,29 @@ section[id], div[id] {
   }
 }
 
-/* 5. Compact Smartphones (max-width: 380px) */
+/* 6. Compact Mobile Phones (max-width: 380px) */
 @media (max-width: 380px) {
-  .brand-sub {
-    display: none;
+  .container {
+    padding: 0 10px;
   }
   .brand-title {
     font-size: 15px;
   }
+  .brand-badge {
+    font-size: 9px;
+    padding: 1px 4px;
+  }
   .nav-actions .nav-btn-download span {
-    display: none;
+    font-size: 11px;
   }
   .nav-actions .nav-btn-download {
-    padding: 8px 10px;
+    padding: 6px 10px;
+  }
+  .hero-title {
+    font-size: 23px;
   }
   .metrics-grid {
     grid-template-columns: 1fr;
   }
-  .hero-title {
-    font-size: 22px;
-  }
 }
+
