@@ -843,6 +843,86 @@
     .faq-footer a:hover {
       text-decoration: underline;
     }
+
+    /* ─── Mobile Responsiveness ────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .faq-shell {
+        padding: 16px 12px 60px;
+        gap: 16px;
+      }
+
+      .glass-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px 14px;
+      }
+
+      .brand {
+        justify-content: flex-start;
+      }
+
+      .header-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        width: 100%;
+      }
+
+      .header-btn {
+        justify-content: center;
+        padding: 8px 4px;
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-banner {
+        padding: 22px 16px;
+        border-radius: 16px;
+      }
+
+      .hero-title {
+        font-size: 22px !important;
+        line-height: 1.25 !important;
+      }
+
+      .hero-desc {
+        font-size: 13.5px !important;
+      }
+
+      .gh-info-side {
+        flex: 1 1 100%;
+      }
+
+      .gh-actions-side {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .gh-btn-star,
+      .gh-btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .filter-bar {
+        width: 100%;
+        padding-bottom: 6px;
+      }
+
+      .toggle-all-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>

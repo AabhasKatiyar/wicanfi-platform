@@ -447,20 +447,22 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
-
-.hero-check-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.hero-check-item {
+.hero-trust-bar {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  background: rgba(248, 250, 252, 0.9);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 9px 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+.hero-trust-bar strong {
+  color: var(--text-main);
 }
 
 /* ─── Exact Real Extension UI Mockup ────────────────────────────────── */
