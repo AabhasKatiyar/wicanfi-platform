@@ -104,6 +104,27 @@
           desc: 'Click <strong>"Load unpacked"</strong> and select the WiCanFi unzipped directory.'
         }
       ]
+    },
+    android: {
+      name: 'Android Phone',
+      steps: [
+        {
+          title: 'Download APK',
+          desc: 'Download <code>WiCanFi.apk</code> directly to your Android device from the Downloads section below.'
+        },
+        {
+          title: 'Install Package',
+          desc: 'Tap the downloaded APK. If prompted by Android, allow <em>"Install unknown apps"</em> for your browser.'
+        },
+        {
+          title: 'Save Student Login',
+          desc: 'Open WiCanFi, enter your student ID & password once, and tap <strong>Save</strong> (stored locally in Hardware Keystore).'
+        },
+        {
+          title: 'Add Quick Settings Tile',
+          desc: 'Pull down your notification shade, tap the edit icon, and drag the <strong>WiCanFi Tile</strong> into your active shade for 1-tap control.'
+        }
+      ]
     }
   };
 
