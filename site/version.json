@@ -7,10 +7,10 @@
   "githubRepo": "https://github.com/AabhasKatiyar/wicanfi",
   "updateInstructions": "Double-click Update-Windows.bat (Windows) or Update-Mac.command (Mac), then reload on edge://extensions or chrome://extensions.",
   "android": {
-    "version": "1.4.1",
-    "versionCode": 15,
-    "releaseDate": "2026-10-14",
-    "releaseNotes": "• Telemetry Idempotency & Queue Protection: Preserved client event IDs across network retries with backend deduplication.\n• Multi-Device Login Stability: Hardened XML parsing and live mode 192 verification.\n• External Wi-Fi Standby: Accurately detects non-campus networks and prevents false college connected states.\n• 1-Tap Fast Logout: Parallelized session termination (<400ms) with zero hangs.",
+    "version": "1.4.2",
+    "versionCode": 16,
+    "releaseDate": "2026-10-15",
+    "releaseNotes": "• Gateway Session Synchronization: Fixed XML parser to extract user session from gateway message and recognize active authenticated state without requiring absent user tags.\n• Eliminated Contradictory Status: Synchronized headline and descriptions so 'Ready to Connect' and 'You are signed in' never conflict.\n• Robust Gateway Multi-Host Fallback: Added multi-host candidate loop during direct campus login.\n• Fallback WAN Connectivity Check: Authoritative real-network probe automatically confirms active campus Wi-Fi sessions.",
     "downloadUrl": "https://wicanfi.pages.dev/download/WiCanFi.apk",
     "directApkUrl": "https://wicanfi.pages.dev/download/WiCanFi.apk"
   }
