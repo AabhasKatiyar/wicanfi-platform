@@ -18,7 +18,35 @@ That's it! WiCanFi is installed and will automatically handle your campus Wi-Fi.
 HOW TO UPDATE ANYTIME:
 ----------------------------------------------------------------
 - Windows: Double-click Update-Windows.bat
-- Mac:     Double-click Update-Mac.command
+- Apple Mac: Double-click Update-Mac.command
+  (Or in Terminal: curl -fsSL https://wicanfi.pages.dev/update-mac.sh | bash)
+
+----------------------------------------------------------------
+APPLE MAC NOTE (If Mac says "Not Opened / Apple could not verify... Move to Bin")
+----------------------------------------------------------------
+Q: Why does macOS show "Update-Mac.command Not Opened"?
+A: macOS Gatekeeper automatically places all downloaded internet files into "Quarantine".
+   Because WiCanFi is a free open-source student tool and not signed with an
+   expensive Apple Developer ID, macOS Sequoia and Sonoma block unsigned scripts by default.
+
+HOW TO RUN ON MAC (3 Easy Methods):
+
+  METHOD 1 (Terminal 1-Liner — FASTEST, 100% RELIABLE & ZERO WARNINGS):
+  Open Terminal (Press Cmd + Space, type "Terminal", hit Enter) and paste:
+  curl -fsSL https://wicanfi.pages.dev/update-mac.sh | bash
+  (This downloads, unblocks Gatekeeper automatically, and opens the updated folder!)
+
+  METHOD 2 (System Settings — macOS 15 Sequoia & macOS 14 Sonoma):
+  1. On the "Not Opened" popup dialog, click "Done" (DO NOT click "Move to Bin"!).
+  2. Click Apple Menu () in top-left -> System Settings -> Privacy & Security.
+  3. Scroll down to the "Security" section.
+  4. You will see: '"Update-Mac.command" was blocked to protect your Mac.'
+  5. Click "Open Anyway", enter your Mac password / Touch ID, and click "Open".
+     (After doing this once, it permanently unblocks and works forever!)
+
+  METHOD 3 (Right-click on macOS Ventura and earlier):
+  1. Right-Click (or Control + Click) "Update-Mac.command".
+  2. Select "Open" from the menu, then click "Open" in the dialog box.
 
 ----------------------------------------------------------------
 WINDOWS SECURITY NOTE (Why "Unknown Publisher" appears & Is it safe?)
@@ -27,7 +55,7 @@ Q: Why does Windows SmartScreen say "Windows protected your PC" or
    "Unknown Publisher" when I run Update-Windows.bat?
 
 A: WiCanFi is a verified open-source, non-profit campus tool:
-   https://github.com/AabhasKatiyar/wicanfi-platform
+   https://github.com/AabhasKatiyar/wicanfi
 
    Microsoft Windows Defender SmartScreen automatically displays this warning
    on ANY batch file (.bat) downloaded from the internet because .bat scripts

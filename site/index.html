@@ -80,7 +80,7 @@
         "applicationSubCategory": "NetworkingApplication",
         "operatingSystem": "Windows, macOS, Linux, ChromeOS",
         "downloadUrl": "https://wicanfi.pages.dev/WiCanFi-Extension.zip",
-        "softwareVersion": "1.0.8",
+        "softwareVersion": "1.4.1",
         "fileSize": "602KB",
         "description": "Client-side campus Wi-Fi control layer and captive portal assistant. Automates captive portal authentication, provides instant re-auth & session logout, and guarantees 100% zero-knowledge local privacy.",
         "offers": {
@@ -91,8 +91,8 @@
         "author": {
           "@id": "https://wicanfi.pages.dev/#author"
         },
-        "codeRepository": "https://github.com/AabhasKatiyar/wicanfi-platform",
-        "license": "https://github.com/AabhasKatiyar/wicanfi-platform/blob/main/LICENSE"
+        "codeRepository": "https://github.com/AabhasKatiyar/wicanfi",
+        "license": "https://github.com/AabhasKatiyar/wicanfi/blob/main/LICENSE"
       },
       {
         "@type": "Person",
@@ -101,7 +101,7 @@
         "url": "https://github.com/AabhasKatiyar",
         "sameAs": [
           "https://github.com/AabhasKatiyar",
-          "https://github.com/AabhasKatiyar/wicanfi-platform"
+          "https://github.com/AabhasKatiyar/wicanfi"
         ]
       }
     ]
@@ -128,7 +128,7 @@
           <div class="brand-text">
             <div class="brand-title">
               <span>WiCanFi</span>
-              <span class="brand-badge">v1.0.8</span>
+              <span class="brand-badge">v1.1.0</span>
             </div>
             <span class="brand-sub">Campus Wi-Fi Control Layer</span>
           </div>
@@ -137,13 +137,14 @@
         <ul class="nav-menu">
           <li><a href="#problem" class="nav-link">Laptop &amp; Mobile</a></li>
           <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#private-surf" class="nav-link">Private Surfing</a></li>
           <li><a href="#install" class="nav-link">Setup Guide</a></li>
           <li><a href="#downloads" class="nav-link">Downloads</a></li>
           <li><a href="faq.html" class="nav-link">Security &amp; FAQ</a></li>
         </ul>
 
         <div class="nav-actions">
-          <a href="https://github.com/AabhasKatiyar/wicanfi-platform" target="_blank" rel="noopener noreferrer" class="nav-btn-gh" title="Star AabhasKatiyar/wicanfi-platform on GitHub">
+          <a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" rel="noopener noreferrer" class="nav-btn-gh" title="Star AabhasKatiyar/wicanfi on GitHub">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span>Star</span>
             <span class="live-gh-stars">★</span>
@@ -173,7 +174,7 @@
           </div>
           <div class="brand-title" style="font-size:16px;">
             <span>WiCanFi</span>
-            <span class="brand-badge">v1.0.8</span>
+            <span class="brand-badge">v1.1.0</span>
           </div>
         </a>
         <button type="button" class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close menu">&times;</button>
@@ -183,6 +184,7 @@
         <ul class="mobile-nav-links">
           <li><a href="#problem" class="mobile-nav-link"><span class="m-icon">💻</span> Laptop &amp; Mobile</a></li>
           <li><a href="#how-it-works" class="mobile-nav-link"><span class="m-icon">⚡</span> How It Works</a></li>
+          <li><a href="#private-surf" class="mobile-nav-link"><span class="m-icon">🛡️</span> Private Surfing</a></li>
           <li><a href="#install" class="mobile-nav-link"><span class="m-icon">🛠️</span> Setup Guide</a></li>
           <li><a href="#downloads" class="mobile-nav-link"><span class="m-icon">📦</span> Downloads</a></li>
           <li><a href="faq.html" class="mobile-nav-link"><span class="m-icon">🛡️</span> Security &amp; FAQ</a></li>
@@ -191,9 +193,9 @@
         <div class="mobile-drawer-actions">
           <a href="#downloads" class="mobile-btn-download" id="mobileDrawerDownload">
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            <span>Get WiCanFi (v1.0.8)</span>
+            <span>Get WiCanFi (v1.1.0)</span>
           </a>
-          <a href="https://github.com/AabhasKatiyar/wicanfi-platform" target="_blank" rel="noopener noreferrer" class="mobile-btn-gh">
+          <a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" rel="noopener noreferrer" class="mobile-btn-gh">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span>Star on GitHub</span>
             <span class="live-gh-stars">★</span>
@@ -215,6 +217,7 @@
           <div class="hero-badge-strip">
             <span class="pill-badge pill-emerald">⚡ 1-Tap Login &amp; Logout</span>
             <span class="pill-badge pill-amber">🔒 100% Private (No Cloud Passwords)</span>
+            <span class="pill-badge" style="background:#ede9fe; color:#5b21b6; border:1.5px solid #ddd6fe;">🛡️ Network Unblocker &amp; Proxy</span>
           </div>
 
           <h1 class="hero-title">
@@ -223,7 +226,7 @@
           </h1>
 
           <p class="hero-desc">
-            Colleges limit you to 1 device at a time. WiCanFi automatically logs in on your laptop and gives you an instant 1-tap logout app on your phone—so you can switch devices without getting blocked.
+            Colleges limit your devices and block your favorite games, streams, and apps. WiCanFi automatically logs in on your laptop, gives you an instant 1-tap session release on your phone, and provides 100% private, unrestricted browsing so you can enjoy games and the full web on campus Wi-Fi without limits.
           </p>
 
           <div class="hero-cta-group">
@@ -520,6 +523,57 @@
       </div>
     </section>
 
+    <!-- Private Surfing & Unrestricted Access Feature Section -->
+    <section class="section" id="private-surf">
+      <div class="section-head">
+        <span class="section-pill" style="background:#ede9fe; color:#5b21b6; border-color:#ddd6fe;">🛡️ Pure Freedom on Campus</span>
+        <h2 class="section-title">Surf the Web Fully Private — Enjoy Online Gaming, Streaming &amp; Everything</h2>
+        <p class="section-desc">
+          College Wi-Fi networks block games, apps, and popular online services. WiCanFi gives you 100% private stealth browsing so you can enjoy high-speed gaming, smooth video streaming, and normal internet surfing with zero firewall blocks and zero tracking.
+        </p>
+      </div>
+
+      <div class="devices-showcase-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        
+        <!-- Card 1: Play Online Games Freely -->
+        <div class="flow-step-card" style="padding: 28px; background: var(--bg-surface); border: 1.5px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: left;">
+          <div style="font-size: 36px; margin-bottom: 14px;">🎮</div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">Enjoy Online Games &amp; Voice Chats</h3>
+          <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
+            Play your favorite multiplayer games, access gaming platforms, and chat with friends on campus Wi-Fi without firewall connection drops, port blocks, or frustrating timeout errors.
+          </p>
+        </div>
+
+        <!-- Card 2: 100% Private & Undetectable -->
+        <div class="flow-step-card" style="padding: 28px; background: var(--bg-surface); border: 1.5px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: left;">
+          <div style="font-size: 36px; margin-bottom: 14px;">🔒</div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">100% Private — Zero Firewall Tracking</h3>
+          <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
+            Your web browsing is completely encrypted. Campus firewalls cannot see or inspect what sites or services you open. Surf with peace of mind knowing your digital privacy is fully protected.
+          </p>
+        </div>
+
+        <!-- Card 3: Smooth HD Video Streaming -->
+        <div class="flow-step-card" style="padding: 28px; background: var(--bg-surface); border: 1.5px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: left;">
+          <div style="font-size: 36px; margin-bottom: 14px;">⚡</div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">Smooth Streaming &amp; Zero Buffering</h3>
+          <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
+            Watch videos, live streams, and media seamlessly. Built-in edge acceleration delivers fast video chunk loading and seeking without stuttering or campus bandwidth throttling.
+          </p>
+        </div>
+
+        <!-- Card 4: 1-Click Toggle — No Bulky VPNs -->
+        <div class="flow-step-card" style="padding: 28px; background: var(--bg-surface); border: 1.5px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: left;">
+          <div style="font-size: 36px; margin-bottom: 14px;">🚀</div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">1-Click Freedom — No Heavy VPNs</h3>
+          <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
+            No complicated apps to configure, no heavy VPNs draining your battery or slowing your laptop. Just one switch in WiCanFi, and your internet is unlocked and ready to explore freely.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
 
     <!-- Installation Walkthrough -->
     <section class="section" id="install">
@@ -581,7 +635,7 @@
           <div>
             <h4 class="updaters-callout-title">Built-in 1-Click Updaters Included</h4>
             <p class="updaters-callout-desc">
-              The ZIP comes bundled with <code>Update-Windows.bat</code> and <code>Update-Mac.command</code>. Double-click anytime to automatically fetch bug fixes and updates with zero manual downloads!
+              The ZIP comes bundled with <code>Update-Windows.bat</code> and <code>Update-Mac.command</code>. Double-click anytime to automatically fetch bug fixes and updates with zero manual downloads! Mac users can also update via Terminal in 1 second: <code>curl -fsSL https://wicanfi.pages.dev/update-mac.sh | bash</code>
             </p>
           </div>
         </div>
@@ -609,10 +663,10 @@
           </div>
           <a href="/WiCanFi-Extension.zip" download="WiCanFi-Extension.zip" class="dl-btn dl-btn-primary" title="Download WiCanFi-Extension.zip">
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            <span>Download .ZIP (v1.0.8)</span>
+            <span>Download .ZIP (v1.3.1)</span>
           </a>
           <div class="dl-fallback-hint">
-            Direct Mirror: <a href="https://github.com/AabhasKatiyar/wicanfi-platform/raw/main/WiCanFi-Extension.zip" target="_blank" download="WiCanFi-Extension.zip">GitHub Raw Mirror</a>
+            Direct Mirror: <a href="https://github.com/AabhasKatiyar/wicanfi/raw/main/WiCanFi-Extension.zip" target="_blank" download="WiCanFi-Extension.zip">GitHub Raw Mirror</a>
           </div>
         </div>
 
@@ -624,10 +678,10 @@
           </div>
           <a href="/download/WiCanFi.apk" download="WiCanFi.apk" class="dl-btn dl-btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);" title="Download WiCanFi Android APK">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.996-3.4572c.1126-.1951.0456-.4445-.1496-.5571-.195-.1126-.4444-.0456-.557.1495l-2.0223 3.5028C15.5902 8.411 13.856 8.0772 12 8.0772s-3.5902.3338-5.1486.8824L4.8291 5.4566c-.1126-.1951-.362-.2621-.557-.1495-.1952.1126-.2622.362-.1496.5571l1.996 3.4572C2.6884 11.0943.3432 14.6543 0 18.8475h24c-.3432-4.1932-2.6884-7.7532-6.1185-9.5261"/></svg>
-            <span>Download .APK (v1.0.0)</span>
+            <span>Download .APK (v1.3.8)</span>
           </a>
           <div class="dl-fallback-hint">
-            Direct Mirror: <a href="https://github.com/AabhasKatiyar/wicanfi-platform/raw/main/dist/WiCanFi.apk" target="_blank" download="WiCanFi.apk">GitHub Raw Mirror</a>
+            Direct Mirror: <a href="https://github.com/AabhasKatiyar/wicanfi/raw/main/dist/WiCanFi.apk" target="_blank" download="WiCanFi.apk">GitHub Raw Mirror</a>
           </div>
         </div>
 
@@ -649,7 +703,7 @@
             <h3 class="dl-title">GitHub Releases</h3>
             <p class="dl-desc">Official tagged releases, version changelogs, integrity checksums, and full MIT open-source repository.</p>
           </div>
-          <a href="https://github.com/AabhasKatiyar/wicanfi-platform/releases" target="_blank" rel="noopener noreferrer" class="dl-btn" title="View Releases on GitHub">
+          <a href="https://github.com/AabhasKatiyar/wicanfi/releases" target="_blank" rel="noopener noreferrer" class="dl-btn" title="View Releases on GitHub">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span>GitHub Releases</span>
           </a>
@@ -666,7 +720,7 @@
         </div>
         <div>
           <h3 class="gh-banner-title">
-            <span>AabhasKatiyar / wicanfi-platform</span>
+            <span>AabhasKatiyar / wicanfi</span>
             <span style="font-size: 13px; font-weight: 700; color: #fde047; background: rgba(250, 204, 21, 0.15); padding: 2px 8px; border-radius: 9999px;">Open Source</span>
           </h3>
           <p class="gh-banner-desc">
@@ -676,13 +730,13 @@
       </div>
 
       <div class="gh-banner-actions">
-        <a href="https://github.com/AabhasKatiyar/wicanfi-platform" target="_blank" rel="noopener noreferrer" class="gh-star-large" title="Star on GitHub">
+        <a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" rel="noopener noreferrer" class="gh-star-large" title="Star on GitHub">
           <svg width="18" height="18" fill="#f59e0b" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.165-7.333-3.856-7.333 3.856 1.399-8.165-5.934-5.784 8.2-1.192zm0 5.702l-2.223 4.505-4.972.723 3.598 3.507-.848 4.951 4.445-2.338 4.445 2.338-.848-4.951 3.598-3.507-4.972-.723z"/></svg>
           <span>Star on GitHub</span>
           <span class="live-gh-stars" style="font-size: 12px; background: #e2e8f0; padding: 2px 6px; border-radius: 6px;">★</span>
         </a>
 
-        <a href="https://github.com/AabhasKatiyar/wicanfi-platform/issues" target="_blank" rel="noopener noreferrer" class="gh-issue-large" title="Report Bug or Request Feature">
+        <a href="https://github.com/AabhasKatiyar/wicanfi/issues" target="_blank" rel="noopener noreferrer" class="gh-issue-large" title="Report Bug or Request Feature">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
           <span>Report Issue</span>
         </a>
@@ -717,19 +771,19 @@
           <div class="footer-col-title">Security &amp; Docs</div>
           <ul class="footer-links">
             <li><a href="faq.html">FAQ &amp; Security</a></li>
-            <li><a href="update-success.html">What's New in v1.0.8</a></li>
+            <li><a href="update-success.html">What's New in v1.1.0</a></li>
             <li><a href="How-To-Install.txt">Plaintext Guide</a></li>
             <li><a href="version.json">Version API</a></li>
-            <li><a href="https://github.com/AabhasKatiyar/wicanfi-platform/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+            <li><a href="https://github.com/AabhasKatiyar/wicanfi/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer-col-title">Community</div>
           <ul class="footer-links">
-            <li><a href="https://github.com/AabhasKatiyar/wicanfi-platform" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
-            <li><a href="https://github.com/AabhasKatiyar/wicanfi-platform/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
-            <li><a href="https://github.com/AabhasKatiyar/wicanfi-platform/issues" target="_blank" rel="noopener noreferrer">Report Bug</a></li>
+            <li><a href="https://github.com/AabhasKatiyar/wicanfi" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://github.com/AabhasKatiyar/wicanfi/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
+            <li><a href="https://github.com/AabhasKatiyar/wicanfi/issues" target="_blank" rel="noopener noreferrer">Report Bug</a></li>
             <li><a href="https://github.com/AabhasKatiyar" target="_blank" rel="noopener noreferrer">Author Profile</a></li>
           </ul>
         </div>

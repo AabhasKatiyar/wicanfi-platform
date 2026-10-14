@@ -174,7 +174,7 @@
     const starBadges = document.querySelectorAll('.live-gh-stars');
     if (!starBadges.length) return;
 
-    fetch('https://api.github.com/repos/AabhasKatiyar/wicanfi-platform')
+    fetch('https://api.github.com/repos/AabhasKatiyar/wicanfi')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && typeof data.stargazers_count === 'number') {
